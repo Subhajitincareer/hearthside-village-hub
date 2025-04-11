@@ -36,6 +36,14 @@
     --ring: 79 16% 47%;
 
     --radius: 0.5rem;
+    
+    /* Custom colors */
+    --sage: 79 16% 47%;
+    --cream: 40 30% 96%;
+    --forest: 79 28% 24%;
+    --forest-dark: 79 28% 18%;
+    --stone: 35 10% 40%;
+    --sky: 200 80% 70%;
   }
 
   .dark {
@@ -81,6 +89,23 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-medium;
   }
+  
+  /* Add responsive typography */
+  h1 {
+    @apply text-2xl md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-xl md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-lg md:text-2xl;
+  }
+  
+  p {
+    @apply text-base leading-relaxed;
+  }
 }
 
 @layer components {
@@ -91,4 +116,49 @@
   .section-title {
     @apply text-3xl md:text-4xl font-serif font-medium text-forest mb-6 relative after:content-[''] after:absolute after:w-16 after:h-1 after:bg-sage after:left-0 after:-bottom-3;
   }
+  
+  /* Improved readability for article content */
+  .prose {
+    @apply text-base md:text-lg leading-relaxed max-w-none;
+  }
+  
+  .prose p {
+    @apply mb-6;
+  }
+  
+  .prose h2 {
+    @apply text-xl md:text-2xl font-serif text-forest mt-8 mb-4;
+  }
+  
+  .prose h3 {
+    @apply text-lg md:text-xl font-serif text-forest mt-6 mb-3;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-6 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose blockquote {
+    @apply pl-4 border-l-4 border-sage/30 italic text-stone/80 my-6;
+  }
+  
+  /* Touch-friendly buttons */
+  .touch-button {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+}
+
+/* Add special styling for calendar day with events */
+.rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+  background-color: hsl(var(--sage)) !important;
+  color: white !important;
+}
+
+.rdp-day_today {
+  background-color: rgba(113, 128, 97, 0.1) !important;
+  font-weight: bold;
 }
