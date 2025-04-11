@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -37,10 +38,12 @@ const Gallery = () => {
           subtitle="Explore beautiful moments from our community life and scenic surroundings"
         >
           <div className="flex justify-end mb-6">
-            <Button className="bg-sage hover:bg-sage/90 text-white">
-              <Upload size={18} className="mr-2" />
-              Submit Photos
-            </Button>
+            <Link to="/submit">
+              <Button className="bg-sage hover:bg-sage/90 text-white">
+                <Upload size={18} className="mr-2" />
+                Submit Photos
+              </Button>
+            </Link>
           </div>
           
           <Tabs 
