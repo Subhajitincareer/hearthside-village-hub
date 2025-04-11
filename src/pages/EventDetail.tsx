@@ -108,11 +108,15 @@ const EventDetail = () => {
                 <Breadcrumb>
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbLink as={Link} to="/">Home</BreadcrumbLink>
+                      <BreadcrumbLink asChild>
+                        <Link to="/">Home</Link>
+                      </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                      <BreadcrumbLink as={Link} to="/events">Events</BreadcrumbLink>
+                      <BreadcrumbLink asChild>
+                        <Link to="/events">Events</Link>
+                      </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
