@@ -1,4 +1,3 @@
-
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
@@ -37,7 +36,6 @@ const EventCard = ({ event }: EventCardProps) => {
         <div 
           className="h-48 bg-cover bg-center relative transition-transform hover:scale-105 duration-500"
           style={{ backgroundImage: `url(${imagePath})` }}
-          loading="lazy"
         >
           <div className="absolute bottom-0 left-0 right-0 bg-cream/80 backdrop-blur-sm p-2">
             <div className="flex items-center text-forest">

@@ -1,4 +1,3 @@
-
 import { Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -37,7 +36,6 @@ const NewsCard = ({ news }: NewsCardProps) => {
           <div 
             className="h-48 bg-cover bg-center w-full transition-transform hover:scale-105 duration-500"
             style={{ backgroundImage: `url(${imagePath})` }}
-            loading="lazy"
           />
           <div className="absolute top-2 right-2">
             <span className="bg-sage/80 backdrop-blur-sm text-white px-2 py-1 rounded text-xs">
