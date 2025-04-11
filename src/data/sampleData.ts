@@ -79,7 +79,7 @@ export const resourceItems: ResourceItem[] = [
     id: '1',
     title: 'Local Schools',
     description: 'Information about schools in our area, including bus schedules and important dates.',
-    icon: <School size={32} />,
+    icon: School,
     link: '/resources/schools',
     isExternal: false
   },
@@ -87,7 +87,7 @@ export const resourceItems: ResourceItem[] = [
     id: '2',
     title: 'Healthcare Services',
     description: 'Local doctors, clinics, and emergency services in the surrounding area.',
-    icon: <Heart size={32} />,
+    icon: Heart,
     link: '/resources/healthcare',
     isExternal: false
   },
@@ -95,7 +95,7 @@ export const resourceItems: ResourceItem[] = [
     id: '3',
     title: 'Agricultural Resources',
     description: 'Farming tips, equipment sharing, and agricultural assistance programs.',
-    icon: <Tractor size={32} />,
+    icon: Tractor,
     link: '/resources/agriculture',
     isExternal: false
   },
@@ -103,7 +103,7 @@ export const resourceItems: ResourceItem[] = [
     id: '4',
     title: 'Land Management',
     description: 'Information on sustainable land management practices and local regulations.',
-    icon: <LandPlot size={32} />,
+    icon: LandPlot,
     link: '/resources/land-management',
     isExternal: false
   },
@@ -111,7 +111,7 @@ export const resourceItems: ResourceItem[] = [
     id: '5',
     title: 'Financial Services',
     description: 'Banking, grants, and financial assistance programs for rural residents.',
-    icon: <PiggyBank size={32} />,
+    icon: PiggyBank,
     link: '/resources/financial',
     isExternal: false
   },
@@ -119,7 +119,7 @@ export const resourceItems: ResourceItem[] = [
     id: '6',
     title: 'Community Support',
     description: 'Volunteer opportunities and community assistance programs.',
-    icon: <BadgeHelp size={32} />,
+    icon: BadgeHelp,
     link: '/resources/support',
     isExternal: false
   }
