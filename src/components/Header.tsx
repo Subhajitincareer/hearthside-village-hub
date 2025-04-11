@@ -1,22 +1,39 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Home, Newspaper, Calendar, Image, Mail, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="relative bg-cream/90 backdrop-blur-sm border-b border-stone/10 shadow-sm">
+    <header 
+      ref={headerRef} 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-cream/95 shadow-md' : 'bg-cream/90'
+      } backdrop-blur-sm border-b border-stone/10`}
+    >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2 z-20">
+        <Link to="/" className={`flex items-center space-x-2 z-20 transition-transform duration-300 ${isScrolled ? 'scale-90' : ''}`}>
           <span className="text-xl md:text-2xl text-forest font-serif">Hearthside Village</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-6 animate-fade-in">
           <NavLinks />
         </nav>
 
@@ -27,13 +44,13 @@ const Header = () => {
           className="md:hidden text-forest z-20"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={24} className="animate-fade-in" /> : <Menu size={24} className="animate-fade-in" />}
         </Button>
       </div>
 
       {/* Mobile Navigation - Fullscreen overlay */}
       {isMenuOpen && (
-        <nav className="md:hidden bg-cream/98 fixed inset-0 z-10 pt-20 pb-28">
+        <nav className="md:hidden bg-cream/98 fixed inset-0 z-10 pt-20 pb-28 animate-slide-down">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-6">
             <NavLinks isMobile onClick={() => setIsMenuOpen(false)} />
           </div>
@@ -102,12 +119,12 @@ const NavLinks = ({ isMobile = false, onClick }: { isMobile?: boolean; onClick?:
 
   return (
     <>
-      {links.map((link) => (
+      {links.map((link, index) => (
         <Link
           key={link.name}
           to={link.path}
           className={`font-medium text-forest hover:text-sage transition-colors ${
-            isMobile ? 'text-xl py-4 flex items-center gap-3' : ''
+            isMobile ? 'text-xl py-4 flex items-center gap-3 animate-slide-right stagger-' + Math.min(index + 1, 5) : ''
           }`}
           onClick={onClick}
         >
