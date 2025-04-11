@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Image, Mail, NewspaperIcon, Users } from 'lucide-react';
+import { ArrowRight, Calendar, Image, Mail, NewspaperIcon, Users, ShieldCheck } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
