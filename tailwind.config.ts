@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Earth tone colors
+				sage: '#7D8C65',
+				brown: '#A67F5D',
+				navy: '#324A5F',
+				cream: '#F5F1E6',
+				forest: '#54644D',
+				sky: '#A0C1D1',
+				rust: '#BD5B3E',
+				stone: '#8A857E',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -89,7 +99,11 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+			},
+			fontFamily: {
+				serif: ['Playfair Display', 'serif'],
+				sans: ['Inter', 'sans-serif'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
