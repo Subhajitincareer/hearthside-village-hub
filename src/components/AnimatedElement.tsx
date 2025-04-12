@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 interface AnimatedElementProps {
@@ -22,6 +22,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({
     threshold,
     rootMargin,
+    debounceTime: 100,
   });
 
   const delayClass = delay ? `stagger-${delay}` : '';
@@ -37,4 +38,5 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
   );
 };
 
-export default AnimatedElement;
+// Memoize component to avoid unnecessary re-renders
+export default memo(AnimatedElement);

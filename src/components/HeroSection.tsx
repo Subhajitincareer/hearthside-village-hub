@@ -1,7 +1,8 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { throttle } from 'lodash';
 
 interface HeroSectionProps {
   title: string;
@@ -23,28 +24,44 @@ const HeroSection = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const parallaxRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setIsLoaded(true);
-    
-    const handleScroll = () => {
+  // Throttle scroll handler for better performance
+  const handleScroll = useCallback(
+    throttle(() => {
       if (parallaxRef.current) {
         const scrollPosition = window.scrollY;
-        // Move the background slightly to create parallax effect
-        parallaxRef.current.style.transform = `translateY(${scrollPosition * 0.15}px)`;
+        // Use transform translate3d for hardware acceleration
+        parallaxRef.current.style.transform = `translate3d(0, ${scrollPosition * 0.15}px, 0)`;
       }
-    };
+    }, 16), // ~60fps
+    []
+  );
 
+  useEffect(() => {
+    // Optimize image loading
+    const img = new Image();
+    img.src = imagePath;
+    img.onload = () => {
+      setIsLoaded(true);
+    };
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      handleScroll.cancel();
+    };
+  }, [imagePath, handleScroll]);
 
   return (
     <div className="relative h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden parallax-container">
-      {/* Hero Image with Parallax */}
+      {/* Hero Image with Parallax - use will-change for GPU acceleration */}
       <div 
         ref={parallaxRef}
-        className={`parallax-bg ${isLoaded ? 'animate-zoom-in' : ''}`}
-        style={{ backgroundImage: `url(${imagePath})` }}
+        className={`parallax-bg will-change-transform ${isLoaded ? 'animate-zoom-in' : ''}`}
+        style={{ 
+          backgroundImage: `url(${imagePath})`,
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.5s ease-in'
+        }}
       >
         <div className="absolute inset-0 bg-black/30 z-10"></div>
       </div>
@@ -83,4 +100,5 @@ const HeroSection = ({
   );
 };
 
-export default HeroSection;
+// Memoize the component to prevent unnecessary re-renders
+export default React.memo(HeroSection);
