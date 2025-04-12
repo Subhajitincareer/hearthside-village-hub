@@ -20,6 +20,7 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:username/hearthside-village.git main:gh-pages
+# Replace 'yourusername' with your actual GitHub username
+git push -f git@github.com:yourusername/hearthside-village.git main:gh-pages
 
 cd -

@@ -6,6 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Use basename for GitHub Pages deployment
   base: mode === 'production' ? '/hearthside-village/' : '/',
   server: {
     host: "::",
