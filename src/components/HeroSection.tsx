@@ -1,7 +1,7 @@
 
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef, useState, useCallback } from 'react';
 import { throttle } from 'lodash';
 
 interface HeroSectionProps {
